@@ -1,0 +1,26 @@
+D:\su\SQLite>sqlite3 su.db
+
+sqlite> .tables
+
+sqlite> create table tbler(rno integer primary key autoincrement,sname varchar(5),m1 numeric(5,2),m2 numeric(5,2));
+
+sqlite> .tables
+tbler
+
+sqlite> select * from tbler;
+
+sqlite> insert into tbler(sname, m1, m2)values('x5', 56.5, 63);
+
+sqlite> select * from tbler;
+1|x5|56.5|63
+
+sqlite> .help
+
+sqlite> .help mode
+
+sqlite> .mode column
+
+sqlite> select * from tbler;
+rno  sname  m1    m2
+---  -----  ----  --
+1    x5     56.5  63

@@ -1,0 +1,114 @@
+sqlite> .database
+main: D:\su\SQLite\su.db r/w
+
+sqlite> .tables
+tbler
+
+sqlite> .system cls
+
+sqlite> create table if not exists esatbl('eid' integer primary key autoincrement, 'ename' text not null, 'sal' numeric(11,2)check(sal>=0),'hra' numeric(9,2) as (sal*20.0/100), 'da' numeric(9,2) as (sal*15.0/100), 'pf' numeric(9,2) as (sal*35.0/100),'gpay' numeric(13,2) as (sal+hra+da),'npay'numeric(11,2) as (gpay-pf));
+
+sqlite> .tables
+esatbl  tbler
+
+sqlite> select * from esatbl;
+
+sqlite> insert into esatbl(eid,ename,sal)values(1001,'x5',500000);
+
+sqlite> select * from esatbl;
+1001|x5|500000|100000|75000|175000|675000|500000
+
+sqlite> .mode column
+
+sqlite> .mode columns
+
+sqlite> .headers on
+
+sqlite> select * from esatbl;
+eid   ename  sal     hra     da     pf      gpay    npay
+----  -----  ------  ------  -----  ------  ------  ------
+1001  x5     500000  100000  75000  175000  675000  500000
+
+sqlite> insert into esatbl(eid,ename,sal)values(1002,'x3',300000), (1003,'x1',100000), (1004,'x4',400000), (1005,'x2',200000);
+
+sqlite> select * from esatbl;
+eid   ename  sal     hra     da     pf      gpay    npay
+----  -----  ------  ------  -----  ------  ------  ------
+1001  x5     500000  100000  75000  175000  675000  500000
+1002  x3     300000  60000   45000  105000  405000  300000
+1003  x1     100000  20000   15000  35000   135000  100000
+1004  x4     400000  80000   60000  140000  540000  400000
+1005  x2     200000  40000   30000  70000   270000  200000
+
+sqlite> update esatbl set sal=300000 where eid=1003;
+
+sqlite> select * from esatbl;
+eid   ename  sal     hra     da     pf      gpay    npay
+----  -----  ------  ------  -----  ------  ------  ------
+1001  x5     500000  100000  75000  175000  675000  500000
+1002  x3     300000  60000   45000  105000  405000  300000
+1003  x1     300000  60000   45000  105000  405000  300000
+1004  x4     400000  80000   60000  140000  540000  400000
+1005  x2     200000  40000   30000  70000   270000  200000
+
+sqlite> delete from esatbl where eid=1003;
+
+sqlite> select * from esatbl;
+eid   ename  sal     hra     da     pf      gpay    npay
+----  -----  ------  ------  -----  ------  ------  ------
+1001  x5     500000  100000  75000  175000  675000  500000
+1002  x3     300000  60000   45000  105000  405000  300000
+1004  x4     400000  80000   60000  140000  540000  400000
+1005  x2     200000  40000   30000  70000   270000  200000
+
+sqlite> select eid,ename,npay from esatbl;
+eid   ename  npay
+----  -----  ------
+1001  x5     500000
+1002  x3     300000
+1004  x4     400000
+1005  x2     200000
+
+sqlite> select * from esatbl where eid>1001 and eid<1005;
+eid   ename  sal     hra    da     pf      gpay    npay
+----  -----  ------  -----  -----  ------  ------  ------
+1002  x3     300000  60000  45000  105000  405000  300000
+1004  x4     400000  80000  60000  140000  540000  400000
+
+sqlite> select * from esatbl where not (eid>1001 and eid<1005);
+eid   ename  sal     hra     da     pf      gpay    npay
+----  -----  ------  ------  -----  ------  ------  ------
+1001  x5     500000  100000  75000  175000  675000  500000
+1005  x2     200000  40000   30000  70000   270000  200000
+
+sqlite> select * from esatbl;
+eid   ename  sal     hra     da     pf      gpay    npay
+----  -----  ------  ------  -----  ------  ------  ------
+1001  x5     500000  100000  75000  175000  675000  500000
+1002  x3     300000  60000   45000  105000  405000  300000
+1004  x4     400000  80000   60000  140000  540000  400000
+1005  x2     200000  40000   30000  70000   270000  200000
+
+sqlite> select count(*) from esatbl;
+count(*)
+--------
+4
+
+sqlite> delete from esatbl;
+
+sqlite> select * from esatbl;
+
+sqlite> select count(*) from esatbl;
+count(*)
+--------
+0
+
+sqlite> .tables
+esatbl  tbler
+
+sqlite> drop table if exists esatbl;
+
+sqlite> .tables
+tbler
+
+sqlite> .exit

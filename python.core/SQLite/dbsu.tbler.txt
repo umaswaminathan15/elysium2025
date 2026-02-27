@@ -1,0 +1,5 @@
+drop database if exists;
+
+create database if not exists dbsu
+colata latin1+swedish_ci
+charset latin1;
