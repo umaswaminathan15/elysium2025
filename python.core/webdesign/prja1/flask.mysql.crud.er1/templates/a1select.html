@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<head>
+    <title>Exam Result</title>
+    <link rel = "stylesheet" href="{{url_for('static', filename='a1anchor.css')">
+    <script src="../static/a1compute.js"></script>
+    <script src="{{url_for('static', filename='a1compute.js')}}"></script>
+</head>
+<p align="right">
+    <a href="{{url_for('erNewRow')}}">&#10010;</a>
+</p>
+<table width="100%" border="0">
+    <thead>
+    <th>Roll No.</th>
+    <th>Student Name.</th>
+    <th>Mark 1.</th>
+    <th>Mark 2.</th>
+    <th>Total.</th>
+    <th>Average.</th>
+    <th>Result.</th>
+    </thead>
+    <tbody>
+    {% for row in rows %}
+    <tr>
+        <td>{{ row.rno }}</td>
+        <td>{{ row.sname }}</td>
+        <td>{{ row.m1 }}</td>
+        <td>{{ row.m2 }}</td>
+        <td>{{ row.total }}</td>
+        <td>{{ row.avg }}</td>
+        <td>{{ row.result }}</td>
+        <td><a href="{{url_for('erEditRow', rno=row.rno)}}">&#9998;</a></td>
+        <td><a href="{{url_for('erDeleteRow', rno=row.rno)}}" onclick="return confirm('Sure to delete?');">&#10008;</a></td>
+    </tr>
+    {% endfor %}
+    </tbody>
+</table>
+<p style="color: red;">
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            {% for message in mesages %}
+                {{ message }}
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
+</p>

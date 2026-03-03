@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<head>
+    <title>Edit existing row</title>
+    <link rel = "stylesheet" href="{{url_for('static', filename='a1anchor.css')">
+    <script src="../static/a1compute.js"></script>
+    <script src="{{url_for('static', filename='a1compute.js')}}"></script>
+</head>
+<form method="post" action="/">
+    <table>
+        <tr>
+            <td>Roll No</td>
+            <td><input type="number" name="numrno" value="{{row.rno}}" placeholder="0"></td>
+        </tr>
+        <tr>
+            <td>Student Name</td>
+            <td><input type="text" name="tbxsname" value="{{row.sname}}" placeholder="unknown"></td>
+        </tr>
+        <tr>
+            <td>Mark 1</td>
+            <td><input type="number" name="numm1" value="{{row.m1}}" step="any" placeholder="0.0"></td>
+        </tr>
+        <tr>
+            <td>Mark 2</td>
+            <td><input type="number" name="numm2" value="{{row.m2}}" step="any" placeholder="0.0"></td>
+        </tr>
+        <tr>
+            <td>Total</td>
+            <td><input type="number" value="{{row.total}}" readonly="readonly" placeholder="0.0"></td>
+        </tr>
+        <tr>
+            <td>Average</td>
+            <td><input type="number" value="{{row.avg}}" readonly="readonly" placeholder="0.0"></td>
+        </tr>
+        <tr>
+            <td>Result</td>
+            <td><input type="text" value="{{row.result}}" readonly="readonly" placeholder="fail"></td>
+        </tr>
+        <tr>
+            <td><input type="button" value="cancel" onclick="location.href='/';"></td>
+            <td><input type="submit" value="edit"></td>
+        </tr>
+    </table>
+</form>
