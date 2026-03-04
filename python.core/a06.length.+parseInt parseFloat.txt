@@ -1,0 +1,22 @@
+
+Enterprise test> "sun day".length
+7
+Enterprise test> '5' + '9'
+59
+Enterprise test> parseInt('5') + parseInt('9')
+14
+Enterprise test> 5 + 9
+14
+Enterprise test> '5.2' + '6.8'
+5.26.8
+
+Enterprise test> parseFloat('5.9') + parseFloat('6.8')
+12.7
+Enterprise test> 5.2 + 6.8
+12
+Enterprise test> exit()
+For mongosh info see: https://www.mongodb.com/docs/mongodb-shell/
+C:\Program Files\mongosh-2.7.0-win32-x64\bin>exit
+
+
+
