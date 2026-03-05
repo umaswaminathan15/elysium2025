@@ -1,0 +1,25 @@
+Enterprise dbcmr> show dbs
+admin    40.00 KiB
+config  100.00 KiB
+dbcmr    68.00 KiB
+local    40.00 KiB
+
+Enterprise dbcmr> use dbcmr
+already on db dbcmr
+Enterprise dbcmr> db
+dbcmr    68.00 KiB
+Enterprise dbcmr> show collections
+tbler
+Enterprise dbcmr> db.tbler.drop()
+true
+Enterprise dbcmr> show collections
+
+Enterprise dbcmr> db.createCollection('tbler')
+{ ok: 1 }
+Enterprise dbcmr> show collections
+tbler
+Enterprise dbcmr> db.tbler.find()
+
+
+
+
