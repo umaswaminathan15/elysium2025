@@ -1,0 +1,222 @@
+Enterprise dbcmr> db.tbler.countDocuments({})
+6
+
+Enterprise dbcmr> db.tbler.count()
+6
+
+Enterprise dbcmr> db.tbler.updateMany({},[{$set:{total: {$add:['$m1', '$m2']}}}])
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 6,
+  modifiedCount: 6,
+  upsertedCount: 0
+}
+Enterprise dbcmr> db.tbler.count()
+6
+Enterprise dbcmr> db.tbler.countDocuments({})
+6
+
+Enterprise dbcmr> db.tbler.updateMany({},[{$set:{result:{$cond:{if:{$gt:['$m1', 34.4]},then:'pass', else:'fail'}}}}])
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 6,
+  modifiedCount: 6,
+  upsertedCount: 0
+}
+Enterprise dbcmr> db.tbler.find()
+[
+  {
+    _id: ObjectId('69a9508b9e8823fec87c2907'),
+    rno: 1001,
+    sname: 'x5',
+    m1: 66.5,
+    m2: 53,
+    total: 119.5,
+    avg: NaN,
+    result: 'pass'
+  },
+  {
+    _id: 1,
+    rno: 1001,
+    sname: 'x5',
+    m1: 66.5,
+    m2: 53,
+    total: 119.5,
+    result: 'pass'
+  },
+  {
+    _id: 2,
+    rno: 1002,
+    sname: 'x3',
+    m1: 55.5,
+    m2: 26,
+    total: 81.5,
+    result: 'pass'
+  },
+  {
+    _id: 3,
+    rno: 1003,
+    sname: 'x1',
+    m1: 53,
+    m2: 39.5,
+    total: 92.5,
+    result: 'pass'
+  },
+  {
+    _id: 4,
+    rno: 1004,
+    sname: 'x2',
+    m1: 79,
+    m2: 27.5,
+    total: 106.5,
+    result: 'pass'
+  },
+  {
+    _id: 5,
+    rno: 1005,
+    sname: 'x4',
+    m1: 62,
+    m2: 44.4,
+    total: 106.4,
+    result: 'pass'
+  }
+]
+Enterprise dbcmr> db.tbler.updateMany({},[{$set:{result:{$cond:{if:{$gt:['$m1', 34.4],$gt:['$m2', 34.4]},then:'pass', else:'fail'}}}}])
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 6,
+  modifiedCount: 2,
+  upsertedCount: 0
+}
+Enterprise dbcmr> db.tbler.find()
+[
+  {
+    _id: ObjectId('69a9508b9e8823fec87c2907'),
+    rno: 1001,
+    sname: 'x5',
+    m1: 66.5,
+    m2: 53,
+    total: 119.5,
+    avg: NaN,
+    result: 'pass'
+  },
+  {
+    _id: 1,
+    rno: 1001,
+    sname: 'x5',
+    m1: 66.5,
+    m2: 53,
+    total: 119.5,
+    result: 'pass'
+  },
+  {
+    _id: 2,
+    rno: 1002,
+    sname: 'x3',
+    m1: 55.5,
+    m2: 26,
+    total: 81.5,
+    result: 'fail'
+  },
+  {
+    _id: 3,
+    rno: 1003,
+    sname: 'x1',
+    m1: 53,
+    m2: 39.5,
+    total: 92.5,
+    result: 'pass'
+  },
+  {
+    _id: 4,
+    rno: 1004,
+    sname: 'x2',
+    m1: 79,
+    m2: 27.5,
+    total: 106.5,
+    result: 'fail'
+  },
+  {
+    _id: 5,
+    rno: 1005,
+    sname: 'x4',
+    m1: 62,
+    m2: 44.4,
+    total: 106.4,
+    result: 'pass'
+  }
+]
+Enterprise dbcmr> db.tbler.updateMany({},[{$set:{avg:{$divide:['$total', 2]}}}])
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 6,
+  modifiedCount: 6,
+  upsertedCount: 0
+}
+Enterprise dbcmr> db.tbler.find()
+[
+  {
+    _id: ObjectId('69a9508b9e8823fec87c2907'),
+    rno: 1001,
+    sname: 'x5',
+    m1: 66.5,
+    m2: 53,
+    total: 119.5,
+    avg: 59.75,
+    result: 'pass'
+  },
+  {
+    _id: 1,
+    rno: 1001,
+    sname: 'x5',
+    m1: 66.5,
+    m2: 53,
+    total: 119.5,
+    result: 'pass',
+    avg: 59.75
+  },
+  {
+    _id: 2,
+    rno: 1002,
+    sname: 'x3',
+    m1: 55.5,
+    m2: 26,
+    total: 81.5,
+    result: 'fail',
+    avg: 40.75
+  },
+  {
+    _id: 3,
+    rno: 1003,
+    sname: 'x1',
+    m1: 53,
+    m2: 39.5,
+    total: 92.5,
+    result: 'pass',
+    avg: 46.25
+  },
+  {
+    _id: 4,
+    rno: 1004,
+    sname: 'x2',
+    m1: 79,
+    m2: 27.5,
+    total: 106.5,
+    result: 'fail',
+    avg: 53.25
+  },
+  {
+    _id: 5,
+    rno: 1005,
+    sname: 'x4',
+    m1: 62,
+    m2: 44.4,
+    total: 106.4,
+    result: 'pass',
+    avg: 53.2
+  }
+]
