@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<head>
+    <title>Multiply: Target</title>
+</head>
+
+<div id="dvop">Wait...</div>
+<a href="mtqs1ip.html">Home</a>
+<script>
+    var params = new URL(window.location.href).searchParams;
+
+    var mn = params.has('nummn') ? params.get('nummn') : 0;
+    mn = parseInt(mn);
+    mn = isNaN(mn) ? 0 : mn;
+
+    var op = "";
+    for (let i=1; i < 21; i++){
+        op += i + " x " + mn + " = " + (i * mn) + "<br>";
+    }
+    dvop.innerHTML = op;
+</script>
