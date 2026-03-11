@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Mail sender</title>
+    <style>
+        body{
+            font-family: Arial, Helvetica, sans-serif;
+            background: linear-gradient(135deg,#6a11cb,#2575fc);
+            height:100vh;
+            display:flex;
+            justify-content:center;
+            align-items:center;
+            margin:0;
+        }
+
+        .email-container{
+            background:white;
+            padding:30px 35px;
+            border-radius:10px;
+            width:350px;
+            box-shadow:0 8px 20px rgba(0,0,0,0.2);
+        }
+
+        .email-container h2{
+            text-align:center;
+            margin-bottom:20px;
+            color:#333;
+        }
+
+        form{
+            display:flex;
+            flex-direction:column;
+        }
+
+        input, textarea{
+            margin-bottom:12px;
+            padding:10px;
+            border-radius:6px;
+            border:1px solid #ccc;
+            font-size:14px;
+            transition:0.3s;
+        }
+
+        input:focus, textarea:focus{
+            border-color:#2575fc;
+            outline:none;
+            box-shadow:0 0 5px rgba(37,117,252,0.4);
+        }
+
+        label{
+            font-size:14px;
+            margin-bottom:5px;
+            color:#444;
+        }
+
+        button{
+            background:#2575fc;
+            color:white;
+            border:none;
+            padding:12px;
+            border-radius:6px;
+            font-size:15px;
+            cursor:pointer;
+            transition:0.3s;
+        }
+
+        button:hover{
+            background:#1b5edb;
+        }
+
+        #response{
+            margin-top:15px;
+            text-align:center;
+            color:green;
+            font-weight:bold;
+        }
+    </style>
+</head>
+<body>
+<div class="email-container">
+    <h2>Send Email With Attachment</h2>
+
+    <form id="emailForm">
+        <input type="email" id="to" placeholder="Recipient Email" required>
+        <input type="text" id="subject" placeholder="Subject" required>
+        <textarea id="message" placeholder="Message" rows="4" required></textarea>
+
+        <label>Select Attachment:</label>
+        <input type="file" id="file" required>
+
+        <button type="submit">Send Email</button>
+    </form>
+
+    <p id="response"></p>
+</div>
+
+</body>
+<script>
+    document.getElementById("emailForm").addEventListener("submit", async function (e) {
+        e.preventDefault();
+
+        const formData = new FormData();
+        formData.append("to", document.getElementById("to").value);
+        formData.append("subject", document.getElementById("subject").value);
+        formData.append("message", document.getElementById("message").value);
+
+        const fileInput = document.getElementById("file");
+        if (fileInput.files.length > 0) {
+            formData.append("file", fileInput.files[0]);
+        }
+         try {
+              const res = await fetch("http://localhost:8080/send-attach", {
+                  method: "POST",
+                  body: formData
+              });
+
+              const text = await res.text();
+
+              // Show alert
+              alert("Email sent successfully!");
+
+              // Show response text
+              document.getElementById("response").innerText = text;
+
+              // Clear form fields
+              document.getElementById("emailForm").reset();
+
+          } catch (error) {
+              alert("Failed to send email. Please try again.");
+          }
+      });
+</script>
+
+</html>
