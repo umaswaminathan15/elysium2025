@@ -1,0 +1,12 @@
+import pandas as pd
+d = {
+     'hot':['Coffee', 'Tea', 'Milk'],
+     'cool':['Pepsi', '7Up', 'Coke'],
+     'soft':['Orange', 'Mango', 'Grapes']
+}
+df = pd.DataFrame(d,index=['row1','row2','row3'])
+print(df['cool']['row2'])
+# print(df['cool'][1])
+'''
+7Up
+'''
