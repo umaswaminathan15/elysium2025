@@ -1,0 +1,16 @@
+def uRequestStatus(res):
+    print("JSON:")
+    print(res.json(), end="\n\n")
+    print("TEXT:")
+    print(res.text)
+    print("Request Body:")
+    print(res.request.body)
+    print("Status Code:")
+    print(res.status_code)
+    print("Method:")
+    print(res.request)
+    print("URL:")
+    print(res.request.url)
+    print("Headers:")
+    print(res.request.headers)
+    return
